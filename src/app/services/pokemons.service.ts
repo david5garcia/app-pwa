@@ -13,13 +13,12 @@ export class PokemonsService {
   constructor(private http: HttpClient) {}
 
   getPokemons(): Observable<Pokemon[]> {
-    // return this.http.get<PokemonList>(`${this.baseUrl}?limit=50`).pipe(
-    //   map((pokemonList) => this.getRandomPokemons(pokemonList.results, 5)),
-    //   switchMap((pokemons) =>
-    //     forkJoin(pokemons.map((pokemon) => this.http.get<Pokemon>(pokemon.url)))
-    //   )
-    // );
-    return this.http.get<Pokemon[]>('./assets/pokemon-mock.json');
+    return this.http.get<PokemonList>(`${this.baseUrl}?limit=50`).pipe(
+      map((pokemonList) => this.getRandomPokemons(pokemonList.results, 5)),
+      switchMap((pokemons) =>
+        forkJoin(pokemons.map((pokemon) => this.http.get<Pokemon>(pokemon.url)))
+      )
+    );
   }
 
   private getRandomPokemons(
