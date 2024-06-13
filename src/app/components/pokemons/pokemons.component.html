@@ -1,1 +1,15 @@
-<p>pokemons works!</p>
+<div>
+  <h1>Pokemons</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <div *ngFor="let pokemon of pokemons">
+      <h2>{{ pokemon.name }}</h2>
+      <img
+        [src]="pokemon.sprites.other['official-artwork'].front_default"
+        width="100"
+        [alt]="pokemon.name"
+      />
+      <p>height: {{ pokemon.height }}</p>
+      <p>weight: {{ pokemon.weight }}</p>
+    </div>
+  </div>
+</div>
