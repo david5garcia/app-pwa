@@ -1,15 +1,31 @@
-<div>
-  <h1>Pokemons</h1>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-    <div *ngFor="let pokemon of pokemons">
-      <h2>{{ pokemon.name }}</h2>
-      <img
-        [src]="pokemon.sprites.other['official-artwork'].front_default"
-        width="100"
-        [alt]="pokemon.name"
-      />
-      <p>height: {{ pokemon.height }}</p>
-      <p>weight: {{ pokemon.weight }}</p>
+<div class="w-[900px] max-w-[90%] mx-auto">
+  <div class="my-6 flex justify-between items-center">
+    <h1>Pokemons</h1>
+    <div class="flex gap-4">
+      <button
+        (click)="displayType = 'grid'"
+        [ngClass]="{ 'bg-black text-white': displayType === 'grid' }"
+        class="px-4 py-2 border rounded-lg"
+      >
+        Grid
+      </button>
+      <button
+        (click)="displayType = 'cards'"
+        [ngClass]="{ 'bg-black text-white': displayType === 'cards' }"
+        class="px-4 py-2 border rounded-lg"
+      >
+        Cards
+      </button>
     </div>
+  </div>
+  <div *ngIf="loading" class="flex justify-center items-center h-[500px]">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!loading">
+    <app-grid [pokemons]="pokemons" *ngIf="displayType === 'grid'"></app-grid>
+    <app-cards
+      [pokemons]="pokemons"
+      *ngIf="displayType === 'cards'"
+    ></app-cards>
   </div>
 </div>
