@@ -32,7 +32,7 @@
       "name": "pokeapi-data",
       "urls": ["https://pokeapi.co/api/v2/**"],
       "cacheConfig": {
-        "maxSize": 100,
+        "maxSize": 10000,
         "maxAge": "3h",
         "timeout": "3s",
         "strategy": "freshness"
