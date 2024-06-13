@@ -20,7 +20,6 @@ export class PokemonsComponent {
     this.loading = true;
 
     this.pokemonService.getPokemons().subscribe((pokemons) => {
-      console.log(pokemons);
       this.pokemons = pokemons;
       this.loading = false;
     });
