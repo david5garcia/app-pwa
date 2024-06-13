@@ -18,11 +18,10 @@
       </button>
     </div>
   </div>
-  <!-- <div *ngIf="loading" class="flex justify-center items-center h-[500px]">
+  <div *ngIf="loading" class="flex justify-center items-center h-[500px]">
     <mat-spinner></mat-spinner>
-  </div> -->
-  <!-- <div *ngIf="!loading"> -->
-  <div>
+  </div>
+  <div *ngIf="!loading">
     <app-grid [pokemons]="pokemons" *ngIf="displayType === 'grid'"></app-grid>
     <app-cards
       [pokemons]="pokemons"
