@@ -13,21 +13,12 @@ export class PokemonsService {
   constructor(private http: HttpClient) {}
 
   getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<PokemonList>(`${this.baseUrl}?limit=6`).pipe(
-      //map((pokemonList) => this.getRandomPokemons(pokemonList.results, 6)),
+    return this.http.get<PokemonList>(`${this.baseUrl}?limit=20`).pipe(
       map((pokemonList) => pokemonList.results),
       switchMap((pokemons) =>
         forkJoin(pokemons.map((pokemon) => this.http.get<Pokemon>(pokemon.url)))
       )
     );
-  }
-
-  private getRandomPokemons(
-    pokemons: { name: string; url: string }[],
-    count: number
-  ): { name: string; url: string }[] {
-    const aleatorio = pokemons.sort(() => 0.5 - Math.random());
-    return aleatorio.slice(0, count);
   }
 
   getPokemon(id: number): Observable<Pokemon> {
