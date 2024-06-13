@@ -14,7 +14,7 @@ export class PokemonsService {
 
   getPokemons(): Observable<Pokemon[]> {
     return this.http.get<PokemonList>(`${this.baseUrl}?limit=50`).pipe(
-      map((pokemonList) => this.getRandomPokemons(pokemonList.results, 6)),
+      map((pokemonList) => this.getRandomPokemons(pokemonList.results, 5)),
       switchMap((pokemons) =>
         forkJoin(pokemons.map((pokemon) => this.http.get<Pokemon>(pokemon.url)))
       )
